@@ -39,7 +39,6 @@ RSpec.describe "Park Show Page" do
 
       expect(page).to have_content("Average thrill rating of this parks rides")
       expect(page).to have_content(@flags.rides.average_thrill_rating)
-      save_and_open_page
     end
   end
 end
