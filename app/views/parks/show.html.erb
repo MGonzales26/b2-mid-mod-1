@@ -1,0 +1,9 @@
+<h1><%= @park.name %></h1>
+
+<h3>Admission Price: $<%= sprintf("%.2f",(@park.admission_price)) %></h3>
+
+<% @park.rides_aplphabetical_order.each do |ride| %>
+  <p>
+  <%= ride.name %>
+  </p>
+<% end %>
