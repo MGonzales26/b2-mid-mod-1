@@ -1,0 +1,19 @@
+<h1><%= @mechanic.name %>'s Page</h1>
+<h3>Working with <%= @mechanic.years_experience %> years of experience</h3>
+<body>
+  <div id="rides-list">
+    <h2>Rides <%= @mechanic.name %> has a work order for:</h2>
+    <% @mechanic.ride_list_by_thrill.each do |ride| %>
+      <% if ride.open %>
+      <section id="ride-<%= ride.id %>">
+            <h4><%= ride.name %></h4>
+          <p>
+            Thrill Rating: <%= ride.thrill_rating %>
+            <br>
+            Open: <%= ride.open %>
+          </p>
+        </section>
+      <% end %>
+    <% end %> 
+  </div>
+</body>
