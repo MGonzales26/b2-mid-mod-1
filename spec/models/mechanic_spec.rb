@@ -2,14 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Mechanic, type: :model do
   before(:each) do
+    @flags = Park.create!(name: "Six Flags Over Texas", admission_price: 50.00)
+
     @mech1 = Mechanic.create!(name: "Jack Smith", years_experience: 10)
     @mech2 = Mechanic.create!(name: "Jill Smith", years_experience: 15)
 
-    @sled = Ride.create!(name: "Bob Sled", thrill_rating: 5, open: true)
-    @titan = Ride.create!(name: "Titan", thrill_rating: 10, open: true)
-    @giant = Ride.create!(name: "The Texas Giant", thrill_rating: 8, open: true)
-    @scream = Ride.create!(name: "Judge Roy Scream", thrill_rating: 6, open: true)
-    @freeze = Ride.create!(name: "Mr. Freeze", thrill_rating: 9, open: false)
+    @sled = @flags.rides.create!(name: "Bob Sled", thrill_rating: 5, open: true)
+    @titan = @flags.rides.create!(name: "Titan", thrill_rating: 10, open: true)
+    @giant = @flags.rides.create!(name: "The Texas Giant", thrill_rating: 8, open: true)
+    @scream = @flags.rides.create!(name: "Judge Roy Scream", thrill_rating: 6, open: true)
+    @freeze = @flags.rides.create!(name: "Mr. Freeze", thrill_rating: 9, open: false)
 
     @mech1.rides << [@sled, @titan, @giant, @scream, @freeze]
   end
