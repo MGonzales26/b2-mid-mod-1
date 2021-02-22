@@ -1,0 +1,18 @@
+<h1>All Mechanics</h1>
+
+<body>
+  <div id="mechanics-list">
+    <% @mechanics.each do |mechanic| %>
+      <section id="mechanic-<%= mechanic.id %>">
+        <p>
+        <%= mechanic.name %>
+        <br>
+        has <%= mechanic.years_experience%> years experience
+        </p>
+      </section>  
+      <br>
+    <% end %>
+  </div>
+
+  <h4>Our mechanics have an average of <%= @mechanics.average_years_experience %> years of experience</h4>
+</body>
