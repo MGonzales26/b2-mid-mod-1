@@ -26,7 +26,7 @@ RSpec.describe "Park Show Page" do
     
     it "shows the names of all the rides that are at that theme park listed in alphabetical order" do
       visit park_path(@flags)
-
+      
       expect(@sled.name).to appear_before(@scream.name)
       expect(@scream.name).to appear_before(@freeze.name)
       expect(@freeze.name).to appear_before(@wave.name)
@@ -34,7 +34,12 @@ RSpec.describe "Park Show Page" do
       expect(@giant.name).to appear_before(@titan.name)
     end
     
-    it "shows average thrill rating of this amusement park’s rides"
+    it "shows average thrill rating of this amusement park’s rides" do
+      visit park_path(@flags)
 
+      expect(page).to have_content("Average thrill rating of this parks rides")
+      expect(page).to have_content(@flags.rides.average_thrill_rating)
+      save_and_open_page
+    end
   end
 end
