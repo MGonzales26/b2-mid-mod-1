@@ -16,4 +16,12 @@
       <% end %>
     <% end %> 
   </div>
+
+  <div id="add-ride">
+    <%= form_with url: mechanic_path(@mechanic), method: :patch, local: true do |f| %>
+      <%= f.label :add_ride %><br>
+      <%= f.text_field :add_ride %><br>
+      <%= f.submit "Submit" %>
+    <% end %>
+  </div>
 </body>

@@ -9,6 +9,7 @@ RSpec.describe "Mechanic Show Page" do
     @giant = Ride.create!(name: "The Texas Giant", thrill_rating: 8, open: true)
     @scream = Ride.create!(name: "Judge Roy Scream", thrill_rating: 6, open: true)
     @freeze = Ride.create!(name: "Mr. Freeze", thrill_rating: 9, open: false)
+    @wave = Ride.create!(name: "The Shockwave", thrill_rating: 7, open: true)
 
     @mech1.rides << [@sled, @titan, @giant, @scream, @freeze]
   end
@@ -45,6 +46,24 @@ RSpec.describe "Mechanic Show Page" do
         expect(@titan.name).to appear_before(@giant.name)
         expect(@giant.name).to appear_before(@scream.name)
         expect(@scream.name).to appear_before(@sled.name)
+      end
+    end
+    
+    describe "add a ride to workload" do
+      it "has a form to add a ride to their workload" do
+        visit mechanic_path(@mech1)
+        
+        expect(page).to have_field(:add_ride)
+      end
+      
+      it "returns to the show page with the new ride when entered into the field and submit is hit" do
+        visit mechanic_path(@mech1)
+
+        fill_in :add_ride, with: "#{@wave.id}"
+        click_on "Submit"
+        expect(current_path).to eq(mechanic_path(@mech1))
+
+        expect(page).to have_content(@wave.name)
       end
     end
   end
